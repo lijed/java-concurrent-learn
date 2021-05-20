@@ -22,6 +22,9 @@ public class CountdownLatchDemo1 implements Runnable{
             new Thread(new CountdownLatchDemo1(), "Thread-" + i).start();
         }
         //TODO ..
+
+        Thread.sleep(5000);
+
         countDownLatch.countDown(); //1-0
     }
     @Override

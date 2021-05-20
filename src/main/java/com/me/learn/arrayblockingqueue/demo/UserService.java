@@ -27,7 +27,7 @@ public class UserService {
 
     public void init() {
         executorService.execute(() -> {
-            while(true) {
+            while (true) {
                 try {
                     User user = arrayBlockingQueue.take();
                     System.out.println("发送优惠券");
@@ -51,7 +51,7 @@ public class UserService {
     }
 
     private void addUser(User user) {
-        System.out.println("添加用户"+user);
+        System.out.println("添加用户" + user);
     }
 
     public static void main(String[] args) {
