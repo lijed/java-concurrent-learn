@@ -5,22 +5,13 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.thread.visibility;
+package com.me.learn.juc;
 
 /**
  * Description:
  *
  * @Author: Administrator
- * Created: 2021/5/19
+ * Created: 2021/5/27
  **/
-public class VolatileDemo {
-    public static volatile  boolean stop = false;
-
-    public static void modify() {
-        stop = true;
-    }
-
-    public static void main(String[] args) {
-        modify();
-    }
+public class ArrayBlockingQueueDemo {
 }

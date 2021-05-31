@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.arrayblockingqueue.demo;
+package com.me.learn.juc.arrayblockingqueue.demo1;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;

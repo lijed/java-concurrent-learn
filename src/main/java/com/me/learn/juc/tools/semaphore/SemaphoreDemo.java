@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.semaphore;
+package com.me.learn.juc.tools.semaphore;
 
 import java.util.concurrent.Semaphore;
 

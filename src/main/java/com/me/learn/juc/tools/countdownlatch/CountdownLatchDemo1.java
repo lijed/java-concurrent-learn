@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.countdownlatch;
+package com.me.learn.juc.tools.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -15,6 +15,10 @@ import java.util.concurrent.CountDownLatch;
  * Project Name: java-concurrent-learn
  */
 public class CountdownLatchDemo1 implements Runnable{
+
+    /**
+     * 让1000个线程同时执行
+     */
     static CountDownLatch countDownLatch=new CountDownLatch(1);
 
     public static void main(String[] args) throws InterruptedException {

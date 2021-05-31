@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.thread.visibility;
+package com.me.learn.thread.volatilev;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit;
  * Created: 2021/5/19
  **/
 public class ThreadDemo {
-    private static boolean stop = false;
+//    private static boolean stop = false;
+    private static volatile boolean stop = false;
 
     public static class Worker extends  Thread {
         @Override
