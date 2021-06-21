@@ -15,10 +15,10 @@ import java.util.concurrent.SynchronousQueue;
  * @Author: Administrator
  * Created: 2021/5/30
  **/
-public class SyschronousQueueDemo {
+public class UnfairSyschronousQueueDemo {
 
     public static void main(String[] args) {
-        SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>(false);
+        SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>(true);
         final int quantity= 10;
         Thread producer = new Thread(()-> {
             for (int i = 0; i < quantity; i++) {

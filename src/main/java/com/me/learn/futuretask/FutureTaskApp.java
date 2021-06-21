@@ -10,11 +10,14 @@ package com.me.learn.futuretask;
 import java.util.concurrent.*;
 
 /**
+ *
+ *
+ * Callable/Futuretask的原理猜想
  * @author Administrator
  * @date 2020/6/13 21:52
  * Project Name: java-concurrent-learn
  */
-public class App {
+public class FutureTaskApp {
     public static void main(String[] args) {
         FutureTask<String> futureTask = new FutureTask<String>(new Callable<String>() {
             @Override

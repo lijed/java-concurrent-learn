@@ -13,38 +13,36 @@ import java.util.concurrent.SynchronousQueue;
  * Description:
  *
  * @Author: Administrator
- * Created: 2021/5/30
+ * Created: 2021/5/31
  **/
-public class SyschronousQueueDemo {
-
+public class UnFairSynchronousQueueTwoPut {
     public static void main(String[] args) {
         SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>(false);
-        final int quantity= 10;
-        Thread producer = new Thread(()-> {
+        final int quantity = 10;
+        Thread producer = new Thread(() -> {
             for (int i = 0; i < quantity; i++) {
                 try {
-                    System.out.println(Thread.currentThread().getName() + " produce  bag"  + i);
+                    System.out.println(Thread.currentThread().getName() + " produce  bag" + i);
                     synchronousQueue.put("bag " + i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }, "Producer");
+        producer.start();
 
-        Thread consumer = new Thread(()-> {
+        Thread producer2 = new Thread(() -> {
             for (int i = 0; i < quantity; i++) {
                 try {
-                   String bag =  synchronousQueue.take();
-                    System.out.println(Thread.currentThread().getName() + " buys " + bag);
+                    System.out.println(Thread.currentThread().getName() + " produce  bag" + i);
+                    synchronousQueue.put("bag " + i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        }, "Consumer");
-        producer.start();
-        consumer.start();
+        }, "Producer2");
 
+        producer2.start();
     }
-
 
 }

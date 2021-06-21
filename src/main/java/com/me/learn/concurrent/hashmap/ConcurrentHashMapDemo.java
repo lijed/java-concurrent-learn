@@ -7,6 +7,9 @@
  */
 package com.me.learn.concurrent.hashmap;
 
+import sun.awt.windows.WPrinterJob;
+
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,6 +33,11 @@ public class ConcurrentHashMapDemo {
         System.out.println(Integer.numberOfLeadingZeros(16));
         System.out.println((1 << 15));
         System.out.println(Integer.numberOfLeadingZeros(16) | (1 << (16 - 1)));
+        int rs = Integer.numberOfLeadingZeros(16) | (1 << (16 - 1));
+        System.out.println((rs << 16) + 2);
+
+        Integer sizeCtl = (rs << 16) + 2;
+        System.out.println(Integer.toBinaryString(sizeCtl));
 
     }
 }
