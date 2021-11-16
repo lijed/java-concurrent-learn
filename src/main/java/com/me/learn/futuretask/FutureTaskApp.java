@@ -24,8 +24,8 @@ public class FutureTaskApp {
             public String call() throws Exception {
                 Thread.sleep(5000);
                 return "Jed Li";
-            }
-        });
+             }
+});
 
         new Thread(futureTask).start();
 

@@ -10,11 +10,12 @@ package com.me.learn.juc.tools.semaphore;
 import java.util.concurrent.Semaphore;
 
 /**
- * @author Administrator
+ * @author Jed Li
  * @date 2020/6/4 22:56
  * Project Name: java-concurrent-learn
  */
 public class SemaphoreDemo {
+
     public static void main(String[] args) {
         Semaphore semaphore = new Semaphore(5);
         for (int i = 0; i < 10; i++) {

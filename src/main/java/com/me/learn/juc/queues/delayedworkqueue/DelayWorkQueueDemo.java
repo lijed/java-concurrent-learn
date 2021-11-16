@@ -7,10 +7,7 @@
  */
 package com.me.learn.juc.queues.delayedworkqueue;
 
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -20,8 +17,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created: 2021/5/27
  **/
 public class DelayWorkQueueDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException {
         AtomicInteger threadCount = new AtomicInteger();
+
+        //ScheduledExecutorService 内部使用DelayWorkQueue来存储要提交的任务（带返回值和不呆返回值的）
         ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(5, new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {
@@ -32,10 +31,39 @@ public class DelayWorkQueueDemo {
         scheduledExecutorService.schedule(() -> {
             System.out.println("print job, delay 5 秒, " + Thread.currentThread().getName());
         }, 5, TimeUnit.SECONDS);
+        
         scheduledExecutorService.schedule(() -> {
             System.out.println("print job, delay 10 秒 " + Thread.currentThread().getName());
         }, 10, TimeUnit.SECONDS);
 
-        scheduledExecutorService.shutdown();
+
+        ScheduledFuture<String> scheduledFuture = scheduledExecutorService.schedule(() -> {
+            TimeUnit.SECONDS.sleep(5);
+            return "hello" + System.currentTimeMillis();
+        }, 10, TimeUnit.SECONDS);
+
+        try {
+            String result = scheduledFuture.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        AtomicInteger count = new AtomicInteger();
+        ScheduledFuture<?> scheduledFuture1 = scheduledExecutorService.scheduleAtFixedRate(() -> {
+            System.out.println("periodically execute every 20 seconds");
+            count.getAndIncrement();
+        }, 2, 3, TimeUnit.SECONDS);
+
+        while (true) {
+            Object o = null;
+            try {
+                System.out.println("获取定时任务的结果");
+                o = scheduledFuture1.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(o.toString());
+        }
+
     }
 }

@@ -18,7 +18,7 @@ import java.util.concurrent.SynchronousQueue;
 public class UnfairSyschronousQueueDemo {
 
     public static void main(String[] args) {
-        SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>(true);
+        SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>(false);
         final int quantity= 10;
         Thread producer = new Thread(()-> {
             for (int i = 0; i < quantity; i++) {

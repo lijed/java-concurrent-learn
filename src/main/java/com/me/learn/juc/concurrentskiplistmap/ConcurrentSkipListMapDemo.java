@@ -5,13 +5,13 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.juc;
+package com.me.learn.juc.concurrentskiplistmap;
 
 /**
  * Description:
  *
  * @Author: Administrator
- * Created: 2021/5/27
+ * Created: 2021/11/6
  **/
-public class ArrayBlockingQueueDemo {
+public class ConcurrentSkipListMapDemo {
 }

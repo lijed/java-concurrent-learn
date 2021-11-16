@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.concurrent.hashmap;
+package com.me.learn.juc.concurrenthashmap;
 
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;

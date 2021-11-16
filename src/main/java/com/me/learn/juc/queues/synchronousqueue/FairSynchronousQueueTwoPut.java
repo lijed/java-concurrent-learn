@@ -17,25 +17,28 @@ import java.util.concurrent.SynchronousQueue;
  **/
 public class FairSynchronousQueueTwoPut {
     public static void main(String[] args) {
+
+         // faire TransferQueue
         SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>(true);
         final int quantity = 10;
         Thread producer = new Thread(() -> {
             for (int i = 0; i < quantity; i++) {
                 try {
-                    System.out.println(Thread.currentThread().getName() + " produce  bag" + i);
-                    synchronousQueue.put("bag " + i);
+                    synchronousQueue.put("Producer1 -  bag " + i);
+                    System.out.println(Thread.currentThread().getName() + " --Producer1 bag" + i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        }, "Producer");
+        }, "Producer1");
         producer.start();
 
         Thread producer2 = new Thread(() -> {
             for (int i = 0; i < quantity; i++) {
                 try {
-                    System.out.println(Thread.currentThread().getName() + " produce  bag" + i);
-                    synchronousQueue.put("bag " + i);
+
+                    synchronousQueue.put(" -Producer2 bag " + i);
+                    System.out.println(Thread.currentThread().getName() + " Producer2  bag" + i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -43,6 +46,19 @@ public class FairSynchronousQueueTwoPut {
         }, "Producer2");
 
         producer2.start();
+
+        String consumerThreadName =  "consumer thread";
+        Thread consumers = new Thread(() -> {
+            while (true) {
+                try {
+                    String element = synchronousQueue.take();
+                    System.out.println(consumerThreadName + " is consuming " + element);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, consumerThreadName);
+        consumers.start();
     }
 
 }

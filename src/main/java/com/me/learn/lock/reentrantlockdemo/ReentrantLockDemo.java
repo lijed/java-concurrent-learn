@@ -7,6 +7,7 @@
  */
 package com.me.learn.lock.reentrantlockdemo;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -22,8 +23,13 @@ public class ReentrantLockDemo {
     public static void increase() {
         reentrantLock.lock();
         try {
+            TimeUnit.MILLISECONDS.sleep(50);
            i++;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
+
+            // 必须在finnally 快释放锁
             reentrantLock.unlock();
         }
     }

@@ -7,6 +7,7 @@
  */
 package com.me.learn.juc.queues.delayqueue;
 
+import java.util.Random;
 import java.util.concurrent.DelayQueue;
 
 /**
@@ -18,16 +19,26 @@ import java.util.concurrent.DelayQueue;
 public class DelayQueueDemo {
     public static void main(String[] args) throws InterruptedException {
         DelayQueue<Task> queue = new DelayQueue<>();
-        for (int i = 10; i > 0; i--) {
-            queue.add(new Task(i, "task" + i));
-        }
+
+        new Thread(()-> {
+            int delaySecond = 0;
+            Random random = new Random();
+            for (int i = 10; i > 0; i--) {
+                // i is second
+                delaySecond = random.nextInt(10);
+
+                queue.add(new Task( delaySecond, "task" + i));
+                System.out.println(String.format("task %s with delya time %s", i, delaySecond) );
+            }
+
+        }, "生产者线程").start();
+
+
         System.out.println("共有元素个数："  + queue.size());
         while(true) {
            Task task =  queue.take();
             System.out.println(task.toString() + "available time: " + task.getAvailableTime());
-            if(queue.isEmpty()) {
-                break;
-            }
+            task.run();
         }
     }
 }

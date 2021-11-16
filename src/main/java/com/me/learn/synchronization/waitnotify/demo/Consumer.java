@@ -16,7 +16,7 @@ import java.util.Queue;
  * Created: 2021/6/14
  **/
 
-public class Consumer implements Runnable{
+public class Consumer implements Runnable {
     private Queue<String> msg;
     private int maxSize;
 

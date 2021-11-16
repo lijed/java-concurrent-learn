@@ -20,8 +20,7 @@ public class CycleBarrierDemo {
 
     public static void main(String[] args) {
         CyclicBarrier cycleBarrier = new CyclicBarrier(4, () -> {
-            System.out.println("worker are done");
-            System.out.println(Thread.currentThread().getName());
+            System.out.println("worker are done is executed by " + Thread.currentThread().getName());
         });
         for (int i = 0; i < 4; i++) {
             new Worker(cycleBarrier).start();

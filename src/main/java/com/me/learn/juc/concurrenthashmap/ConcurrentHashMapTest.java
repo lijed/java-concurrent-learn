@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.concurrent.hashmap;
+package com.me.learn.juc.concurrenthashmap;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,16 +26,17 @@ public class ConcurrentHashMapTest {
         int totalElements = 100;
         final Random random = new Random();
         for (int i = 0; i < totalElements; i++) {
-            concurrentHashMap.put("key" + i, random.nextInt(10000));
+            concurrentHashMap.put("key" + i,  i);
         }
 
         System.out.println("size: " + concurrentHashMap.size());
+        System.out.println(concurrentHashMap.toString());
         Integer result = concurrentHashMap.searchValues(10, value -> {
             System.out.println("value = " + value);
-            if (value / 2 == 0) {
+            if (value % 13 == 0) {
                 return value * 2;
             } else {
-                return value;
+                return value  + 1;
             }
         });
         System.out.println("result = " + result);
@@ -73,7 +74,7 @@ public class ConcurrentHashMapTest {
     }
 
     /**
-     * 按照键值对删除元素
+     * 按照键值对删除元素  删除的元素匹配才删除
      *
      * @Param
      */
@@ -83,7 +84,7 @@ public class ConcurrentHashMapTest {
         map.put("1", "31");
         map.put("3", "3");
         map.put("123", "2");
-        map.remove("123", "2w");
+        map.remove("123", "2");
         System.out.println(map.get("123"));
     }
 }

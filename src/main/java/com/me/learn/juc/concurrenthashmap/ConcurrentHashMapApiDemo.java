@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Tu.cn
  */
-package com.me.learn.concurrent.hashmap;
+package com.me.learn.juc.concurrenthashmap;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
@@ -38,5 +38,14 @@ public class ConcurrentHashMapApiDemo {
             integerConcurrentHashMap.merge(v, 3, Integer::sum);
         });
         System.out.println(integerConcurrentHashMap);
+
+//        * V oldValue = map.get(key);
+//     * V newValue = (oldValue == null) ? value :
+//     *              remappingFunction.apply(oldValue, value);
+//     * if (newValue == null)
+//     *     map.remove(key);
+//     * else
+//     *     map.put(key, newValue);
+//     * }
     }
 }

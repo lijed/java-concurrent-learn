@@ -7,9 +7,7 @@
  */
 package com.me.learn.threadpool.cachedthreadpool;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Description:
@@ -19,6 +17,10 @@ import java.util.concurrent.TimeUnit;
  **/
 public class CacheThreadPoolDemo {
     public static void main(String[] args) {
+
+//        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+//                60L, TimeUnit.SECONDS,
+//                new SynchronousQueue<Runnable>());
         final ExecutorService executorService = Executors.newCachedThreadPool();
         int taskCount = 50;
         for (int i = 0; i < taskCount; i++) {
@@ -27,11 +29,11 @@ public class CacheThreadPoolDemo {
                 @Override
                 public void run() {
                     System.out.println("Task" + finalI + "executing by thread " + Thread.currentThread());
-//                    try {
-////                        TimeUnit.SECONDS.sleep(3);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                           TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

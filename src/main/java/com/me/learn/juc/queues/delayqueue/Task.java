@@ -7,6 +7,8 @@
  */
 package com.me.learn.juc.queues.delayqueue;
 
+import lombok.Data;
+
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
@@ -16,13 +18,15 @@ import java.util.concurrent.TimeUnit;
  * @Author: Administrator
  * Created: 2021/5/27
  **/
-public class Task implements Delayed {
+@Data
+public class Task implements Delayed, Runnable {
 
     private Long availableTime;
     private Long delaySeconds;
     private String name;
 
     public Task(long delaySeconds, String name) {
+        this.delaySeconds = delaySeconds;
         this.availableTime = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(delaySeconds);
         this.name = name;
     }
@@ -31,6 +35,12 @@ public class Task implements Delayed {
         return availableTime;
     }
 
+    /**
+     * 获取还有多少时间 job需要执行
+     *
+     * @param unit
+     * @return
+     */
     @Override
     public long getDelay(TimeUnit unit) {
         long diffTime = availableTime - System.currentTimeMillis();
@@ -48,5 +58,10 @@ public class Task implements Delayed {
         return "Task{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public void run() {
+        System.out.println("do some thing with delay seconds: " + delaySeconds);
     }
 }

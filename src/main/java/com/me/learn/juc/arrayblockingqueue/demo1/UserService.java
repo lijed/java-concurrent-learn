@@ -31,6 +31,7 @@ public class UserService {
                 try {
                     User user = arrayBlockingQueue.take();
                     System.out.println("发送优惠券");
+                    System.out.println(Thread.currentThread().getName());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -43,6 +44,7 @@ public class UserService {
         User user = new User("Jed");
         addUser(user);
         try {
+            System.out.println(Thread.currentThread().getName());
             arrayBlockingQueue.put(user);
         } catch (InterruptedException e) {
             e.printStackTrace();
